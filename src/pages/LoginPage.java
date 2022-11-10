@@ -34,10 +34,11 @@ public class LoginPage extends PredefinedActions {
 		return passwordLoginErrorMsg.isDisplayed();
 	}
 	public boolean verifyImageLogoDisplayed() {
-		System.out.println("STEP : Verify Logo displayed on Login Page for A");
-		System.out.println("------^^^^-------------");
-		System.out.println("Branch B Scenario 2");
-		System.out.println("STEP : Verify Logo displayed on Login Page Other Changes B");
+		System.out.println("STEP : Verify Logo displayed on Login Page other ChangeA");
+		System.out.println("^^^^------------------------");
+		System.out.println("Branch A scenario 2");
+		System.out.println("STEP : Verify Logo displayed on Login Page Changes B");
+
 		System.out.println("On Branch B Line 39");
 		System.out.println("On Branch B Upload");
 		return driver.findElement(By.cssSelector("div.organization-logo.shadow>img")).isDisplayed();
