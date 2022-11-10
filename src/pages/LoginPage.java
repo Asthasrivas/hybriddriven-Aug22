@@ -34,7 +34,8 @@ public class LoginPage extends PredefinedActions {
 		return passwordLoginErrorMsg.isDisplayed();
 	}
 	public boolean verifyImageLogoDisplayed() {
-		System.out.println("STEP : Verify Logo displayed on Login Page");
+		System.out.println("STEP : Verify Logo displayed on Login Page for A");
+		System.out.println("------------------------");
 		return driver.findElement(By.cssSelector("div.organization-logo.shadow>img")).isDisplayed();
 	}
 	
