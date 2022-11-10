@@ -36,6 +36,9 @@ public class LoginPage extends PredefinedActions {
 	public boolean verifyImageLogoDisplayed() {
 		System.out.println("STEP : Verify Logo displayed on Login Page for A");
 		System.out.println("------------------------");
+		System.out.println("STEP : Verify Logo displayed on Login Page Changes B");
+		System.out.println("On Branch B Line 39");
+		System.out.println("On Branch B Upload");
 		return driver.findElement(By.cssSelector("div.organization-logo.shadow>img")).isDisplayed();
 	}
 	
