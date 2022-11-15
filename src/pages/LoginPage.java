@@ -1,51 +1,71 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import base.PredefinedActions;
 
-public class LoginPage extends PredefinedActions {
+public class LoginPage extends PredefinedActions{
 
-	public void login(String userName, String password) {
-		enterUserName(userName);
-		enterUserPassword(password);
-		clickOnLoginButton();
-	}
-
-	public void enterUserName(String userName) {
-		driver.findElement(By.cssSelector("#txtUsername")).sendKeys("userName");
-	}
-
-	public void enterUserPassword(String password) {
-		driver.findElement(By.cssSelector("#txtPassword")).sendKeys("password");
-	}
-
-	public void clickOnLoginButton() {
-		driver.findElement(By.cssSelector("//button[@type='submit']")).click();
+	@FindBy(id = "txtUsername")
+	private WebElement userNameElement;
+	
+	@FindBy(id = "txtPassword")
+	private WebElement passwordElement;
+	
+	@FindBy(xpath = "//button[@type='submit']")
+	private WebElement submitBtn;
+	
+	@FindBy(css = "div.organization-logo.shadow>img")
+	private WebElement logo;
+	
+	@FindBy(css = "#txtUsername-error")
+	private WebElement usernameErrorElement;
+	
+	@FindBy(css = "#txtPassword-error")
+	private WebElement pwdErrorElement;
+	
+	public LoginPage() {
+		PageFactory.initElements(driver, this);
 	}
 	
-	public boolean isLoginUserNameErrorOnLoginPage() {
-		WebElement userNameLoginErrorMsg = driver.findElement(By.cssSelector("#txtUsername-error"));
-		return userNameLoginErrorMsg.isDisplayed();
-	}
-	public boolean isLoginPasswordErrorOnLoginPage() {
-		WebElement passwordLoginErrorMsg = driver.findElement(By.cssSelector("#txtPassword-error"));
-		return passwordLoginErrorMsg.isDisplayed();
-	}
-	public boolean verifyImageLogoDisplayed() {
-		System.out.println("STEP : Verify Logo displayed on Login Page other ChangeA");
-		System.out.println("^^^^------------------------");
-		System.out.println("Branch A scenario 2");
-		System.out.println("STEP : Verify Logo displayed on Login Page Changes B");
-
-		System.out.println("On Branch B Line 39");
-		System.out.println("On Branch B Upload");
-		return driver.findElement(By.cssSelector("div.organization-logo.shadow>img")).isDisplayed();
+	public void login(String username, String password) {
+		enterUsername(username);
+		enterPassword(password);
+		clickOnLoginBtn();
 	}
 	
-	public String getPageTitle() {
-		return driver.getTitle();
+	public void enterUsername(String username) {
+		//driver.findElement(By.id("txtUsername")).sendKeys(username);
+		
+		//WebElement e = getElement("id", "txtUsername", false);
+		//setText(e,username);
+		//setText("id", "txtUsername", false,username);
+		//userNameElement.sendKeys(username);
+		
+		setText(userNameElement, username);
 	}
-
+	
+	public void enterPassword(String password) {
+		//driver.findElement(By.id("txtPassword")).sendKeys(password);
+		setText(passwordElement, password);
+	}
+	
+	public void clickOnLoginBtn() {
+		//driver.findElement(By.xpath("//button[@type='submit']")).click();
+		clickOnElement(submitBtn, false);
+	}
+	
+	public boolean isUsernameErrorMessageDisplayed() {
+		return isElementDisplayed(usernameErrorElement);
+	}
+	
+	public boolean isPasswordErrorMessageDisplayed() {
+		return isElementDisplayed(passwordElement);
+	}
+	
+	public boolean isLogoDisplayed() {
+		return isElementDisplayed(logo);
+	}
 }
